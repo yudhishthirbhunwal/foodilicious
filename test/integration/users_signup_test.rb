@@ -4,16 +4,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
   # test "invalid signup information" do
   #   assert_no_difference 'User.count' do
-  #     post user_registration_path, params: { user: {first_name: "",
+  #     post 'users/sign_up', params: { user: {first_name: "",
   #                                                   last_name: "",
   #                                                   phone_number: "984531211",
   #                                                   email: "user@invalid",
   #                                                   password: "foobar",
   #                                                   password_confirmation: "foobar"} }
   #   end
-  #   assert_template 'devise/registrations/new'
-  #   assert_select 'div#<CSS id for error explanation>'
-  #   assert_select 'div.<CSS class for field with error>'
+    # assert_template 'devise/registrations/new'
+    # assert_select 'div#<CSS id for error explanation>'
+    # assert_select 'div.<CSS class for field with error>'
   # end
 
   # test "valid signup information" do
