@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,7 +8,6 @@ class User < ApplicationRecord
 
   VALID_PHONE_REGEX = /\d{10}/
   VALID_PASSWORD = /\A
-    (?=.{7,})
     (?=.*\d)
     (?=.*[A-Z])
     (?=.*[[:^alnum:]])

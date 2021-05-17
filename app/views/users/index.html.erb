@@ -1,12 +1,28 @@
 <% provide(:title, 'All Users') %>
-<h1>All Users</h1>
-<%= paginate @users %>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user %>
-      <%= link_to full_name(user), user %>
-    </li>
-  <% end %>
-</ul>
-<%= paginate @users %>
+
+<% if current_user.is_admin? %>
+  <h1>All Users</h1>
+  <%= paginate @allusers %>
+  <ul>
+    <%= render @allusers %>
+  </ul>
+  <%= paginate @allusers %>
+<% end %>
+
+<% if current_user.is_buyer? %>
+  <h1>All Sellers</h1>
+  <%= paginate @sellers %>
+  <ul>
+    <%= render @sellers %>
+  </ul>
+  <%= paginate @sellers %>
+<% end %>
+
+<% if current_user.is_seller? %>
+  <h1>All Buyers</h1>
+  <%= paginate @buyers %>
+  <ul>
+    <%= render @buyers %>
+  </ul>
+  <%= paginate @buyers %>
+<% end %>

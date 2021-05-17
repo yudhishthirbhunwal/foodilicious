@@ -1,7 +1,9 @@
 <div>
   <h1>Welcome to Foodilicious</h1>
   <p>Ordering food is now just a click away.</p>
-  <p>
-    <%= link_to "Sign up now!", new_user_registration_path %>
-  </p>
+  <% if !user_signed_in? %>
+    <p>
+      <%= link_to "Sign up now!", new_user_registration_path %>
+    </p>
+  <% end %>
 </div>

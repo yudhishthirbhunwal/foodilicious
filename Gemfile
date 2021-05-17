@@ -25,6 +25,8 @@ gem 'image_processing', '~> 1.2'
 
 # bootstrap-sass is a Sass-powered version of Bootstrap 3
 gem 'bootstrap-sass', '~> 3.4'
+# Roles library
+gem 'rolify'
 # Simple authorization solution for Rails which is decoupled from user roles. All permissions are stored in a single location.
 gem 'cancancan'
 # A Scope & Engine based paginator.

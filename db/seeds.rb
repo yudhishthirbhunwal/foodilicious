@@ -15,6 +15,9 @@ User.create!( first_name: "User1",
               password_confirmation: "@Foobar1",
               confirmed_at: Time.now.utc )
 
+# Add admin to first user.
+User.first.add_role :admin
+
 # Generate a bunch of additional users.
 99.times do |n|
   first_name = Faker::Name.first_name
@@ -30,3 +33,10 @@ User.create!( first_name: "User1",
                 password_confirmation: password,
                 confirmed_at: Time.now.utc )
 end
+
+# Assign roles.
+users = User.all
+buyers = users[1..50]
+buyers.each { |buyer| buyer.add_role :buyer }
+sellers = users[51..100]
+sellers.each { |seller| seller.add_role :seller }

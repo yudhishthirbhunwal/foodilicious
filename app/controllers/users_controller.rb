@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def index
-    @users = User.page(params[:page]).per(20)
+    @allusers = User.page(params[:page]).per(20)
+    @buyers = User.with_role(:buyer).page(params[:page]).per(20)
+    @sellers = User.with_role(:seller).page(params[:page]).per(20)
   end
 
   def show
