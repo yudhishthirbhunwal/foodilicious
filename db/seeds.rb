@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Create a main sample user.
+User.create!( first_name: "User1",
+              last_name: "Test1",
+              phone_number: "9999965655",
+              email: "user1test1@yopmail.com",
+              password: "@Foobar1",
+              password_confirmation: "@Foobar1",
+              confirmed_at: Time.now.utc )
+
+# Generate a bunch of additional users.
+99.times do |n|
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  phone_number = (0..9).to_a.shuffle.join
+  email = "user#{n+2}test#{n+2}@yopmail.com"
+  password = "@Foobar1"
+  User.create!( first_name: first_name,
+                last_name: last_name,
+                phone_number: phone_number,
+                email: email,
+                password: password,
+                password_confirmation: password,
+                confirmed_at: Time.now.utc )
+end
