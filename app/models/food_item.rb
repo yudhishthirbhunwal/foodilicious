@@ -1,5 +1,7 @@
 class FoodItem < ApplicationRecord
   belongs_to :user
+  has_many :orders, dependent: :destroy
+  has_many :users, through: :orders, dependent: :destroy
 
   default_scope -> { order(name: :asc) }
 

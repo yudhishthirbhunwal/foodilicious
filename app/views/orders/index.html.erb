@@ -1,0 +1,30 @@
+<% provide(:title, 'Orders Placed') %>
+<h1>Orders Placed</h1>
+<% if @orders.any? %>
+  <table>
+    <th>
+      <tr>
+        <td>Order ID</td>
+        <td>Food Item Name</td>
+        <td>Order Placed</td>
+      </tr>
+    </th>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>
+          <%= order.id %>
+        </td>
+        <td>
+          <%= link_to FoodItem.find(order.food_item_id).name, FoodItem.find(order.food_item_id) %>
+        </td>
+        <td>
+          <%= order.created_at %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>You haven't placed any order yet!!</p>
+  <p>Please visit <%= link_to 'here', food_items_path %> and place an order.</p>
+<% end %>
+

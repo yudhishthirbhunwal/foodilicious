@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :orders, dependent: :destroy
   has_many :food_items, dependent: :destroy
   rolify
   # Include default devise modules. Others available are:
@@ -22,4 +23,8 @@ class User < ApplicationRecord
                            uniqueness: true
   validates :email, length: { maximum: 255 }
   validates :password, format: { with: VALID_PASSWORD }
+
+  def get_order(food_item)
+    self.orders.find_by(food_item_id: food_item.id)
+  end
 end
