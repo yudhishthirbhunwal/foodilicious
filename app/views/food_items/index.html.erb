@@ -1,0 +1,19 @@
+<% provide(:title, 'Food Items') %>
+
+<% if current_user.is_admin? || current_user.is_buyer?%>
+  <h1>All Food Items</h1>
+  <%= paginate @food_items %>
+  <ul>
+      <%= render @food_items %>
+  </ul>
+  <%= paginate @food_items %>
+<% end %>
+
+<% if current_user.is_seller? %>
+  <h1>Food Items enlisted by <%= full_name(current_user) %></h1>
+  <%= paginate @food_items_by_seller %>
+  <ul>
+      <%= render @food_items_by_seller %>
+  </ul>
+  <%= paginate @food_items_by_seller %>
+<% end %>

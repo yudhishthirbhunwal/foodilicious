@@ -40,3 +40,12 @@ buyers = users[1..50]
 buyers.each { |buyer| buyer.add_role :buyer }
 sellers = users[51..100]
 sellers.each { |seller| seller.add_role :seller }
+
+# Generate food items for a subset of sellers.
+sellers = User.with_role(:seller).take(6)
+50.times do
+  name = Faker::Food.dish
+  price = rand 3..100
+  description = Faker::Lorem.sentence(word_count: 10)
+  sellers.each { |seller| seller.food_items.create!(name: name, price: price, description: description) }
+end

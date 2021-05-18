@@ -19,11 +19,15 @@
             <li class="nav-item">
               <%= link_to 'Users', users_path, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'Food Items', food_items_path, class: "nav-link" %>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Account
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to 'Enlist a Food Item', new_food_item_path, class: "dropdown-item" if current_user.is_seller? %></li>
                 <li><%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to 'Settings', edit_user_registration_path, class: "dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>

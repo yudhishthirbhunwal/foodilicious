@@ -3,8 +3,8 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new( first_name: "Yudhishthir", last_name: "Bhunwal",
-                      phone_number: "8568500088", email: "yudhishthir@bhunwal.in",
+    @user = User.new( first_name: "Example", last_name: "User",
+                      phone_number: "8568500088", email: "user@example.in",
                       password: "Foobar1@2", password_confirmation: "Foobar1@2" )
   end
 
@@ -133,6 +133,14 @@ class UserTest < ActiveSupport::TestCase
     invalid_passwords.each do |invalid_password|
       @user.password = @user.password_confirmation = invalid_password
       assert_not @user.valid?, "#{invalid_password.inspect} should be invalid"
+    end
+  end
+
+  test "associated food items should be destroyed" do
+    @user.save
+    @user.food_items.create!(name: "Blueberry", price: 5, description: "It is a blueberry!")
+    assert_difference 'FoodItem.count', -1 do
+      @user.destroy
     end
   end
 end

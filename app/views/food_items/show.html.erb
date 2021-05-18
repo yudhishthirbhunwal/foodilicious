@@ -1,0 +1,14 @@
+<% provide(:title, @food_item.name) %>
+<h1>
+  <%= @food_item.name %>
+</h1>
+<strong>
+  <%= @food_item.price %>
+</strong>
+<p>
+  <%= @food_item.description %>
+</p>
+<span>
+  <%= link_to 'edit', edit_food_item_path(@food_item) if can? :update, @food_item %>
+  <%= link_to 'delete', food_item_path(@food_item), method: :delete, data: { confirm: "Are you sure?" } if can? :destroy, @food_item %>
+</span>

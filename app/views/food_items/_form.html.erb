@@ -1,0 +1,22 @@
+<%= form_with(model: @food_item, local: true) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add" %>
+  </div>
+<% end %>

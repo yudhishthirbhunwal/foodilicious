@@ -10,17 +10,17 @@ class Ability
       if user.has_role? :admin
         can :manage, :all
       else
-        can :read, :all
+        can :read, User
       end
       if user.present?
         can [:update, :destroy], User, id: user.id
       end
-      # if user.has_role? :seller
-      #   can :create, FoodItem
-      # end
-      # if user.has_role? :buyer
-      #   can :read, FoodItem
-      # end
+      if user.has_role? :seller
+        can [:create, :read, :update, :destroy], FoodItem, user_id: user.id
+      end
+      if user.has_role? :buyer
+        can :read, FoodItem
+      end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
