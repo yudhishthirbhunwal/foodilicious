@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     @order.food_item_id = @food_item.id
     @order.save
     flash[:notice] = "Order placed successfully!"
+    UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).order_email.deliver_now
     redirect_back(fallback_location: root_path)
   end
   
