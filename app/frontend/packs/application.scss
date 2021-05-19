@@ -13,9 +13,7 @@ body {
   min-height: 650px;
 }
 // Headings
-.home, .help, .about, .contact, .user_index_heading, .user_show_heading,
-.food_index_heading, .food_show_heading, .order_index_heading, .food_new_heading,
-.food_edit_heading {
+.home, .help, .about, .contact, .heading {
   text-align: center;
   min-height: 500px;
   display: flex;
@@ -39,14 +37,11 @@ body {
   border-radius: 10px;
 }
 
-.user_index_heading, .user_show_heading,
-.food_index_heading, .food_show_heading,
-.order_index_heading, .food_new_heading,
-.food_edit_heading {
+.heading {
   min-height: 150px;
 }
 
-.user_index_list, .food_index_list{
+.user_index_list, .food_index_list {
   display: flex;
   flex-wrap: wrap;
 }
@@ -69,23 +64,33 @@ body {
 }
 
 //Forms
-.food_new_content, .food_edit_content {
+.food_new_content, .food_edit_content, .devise_content {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.food_form {
-  width: 40%;
+.food_form, .new_user, .edit_user {
   padding: 50px;
   background: #effaff;
   border: 1px solid #48aed6;
-  .actions {
-    text-align: center;
-  }
+}
+
+.actions {
+  text-align: center;
   input {
     padding: 10px 50px;
   }
 }
+
+.devise_links, .registration_edit_cancel {
+  text-align: center;
+}
+
+.devise_links a {
+    color: #2f9bc7
+  }
 
 // Tables
 table a {
@@ -157,17 +162,11 @@ h5 a {
   .user_card {
     width: 50%;
   }
-  .food_form {
-    width: 60%;
-  }
 }
 
 @media only screen and (max-width: 800px) {
   .food_card {
     width: 50%;
-  }
-  .food_form {
-    width: 80%;
   }
 }
 
@@ -180,9 +179,6 @@ h5 a {
   .food_card {
     width: 100%;
     padding-right: 0;
-  }
-  .food_form {
-    width: 100%;
   }
 }
 

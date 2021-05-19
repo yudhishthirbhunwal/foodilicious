@@ -1,0 +1,30 @@
+<div class="container confirmation_new">
+
+  <div class="confirmation_new_heading heading">
+    <h2>Resend confirmation instructions</h2>
+  </div>
+
+  <div class="confirmation_new_content devise_content">
+
+    <div class="confirmation_new_form">
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="form-floating field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+          <%= f.label :email %><br />
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Resend confirmation instructions", class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="devise_links">
+      <%= render "devise/shared/links" %>
+    </div>
+
+  </div>
+
+</div>
