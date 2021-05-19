@@ -1,7 +1,11 @@
 <% provide(:title, full_name(@user)) %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= full_name(@user) %>
-</h1>
-<strong><%= @user.email %></strong>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container user_show">
+  <div class="user_show_heading">
+    <h1>Profile</h1>
+  </div>
+  <div class="user_show_content">
+    <%= gravatar_for @user %>  <%= full_name(@user) %>
+    <br>
+    <%= @user.email %>
+  </div>
+</div>

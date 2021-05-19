@@ -1,19 +1,11 @@
-<% if user_signed_in? %>
-<div>
-  <h1>Welcome to Foodilicious</h1>
-  <p>Ordering food is now just a click away.</p>
-  <% if (can? :create, FoodItem) && current_user.is_seller? %>
-    <span>
-      <%= link_to 'Enlist Food Item', new_food_item_path %>
-    </span>
+<div class="container home">
+  <div class="home_heading">
+    <h1>Welcome to Foodilicious</h1>
+    <p>Ordering food is now just a click away.</p>
+  </div>
+  <% if !user_signed_in? %>
+    <div class="home_button">
+      <%= link_to "Sign up now!", new_user_registration_path %>
+    </div>
   <% end %>
 </div>
-<% else %>
-<div>
-  <h1>Welcome to Foodilicious</h1>
-  <p>Ordering food is now just a click away.</p>
-  <p>
-    <%= link_to "Sign up now!", new_user_registration_path %>
-  </p>
-</div>
-<% end %>

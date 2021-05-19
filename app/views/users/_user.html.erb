@@ -1,5 +1,15 @@
-<li>
-  <%= gravatar_for user %>
-  <%= link_to full_name(user), user %>
-  <%= link_to "Delete", user, method: :delete if can? :destroy, user %>
-</li>
+<div class="user_card">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%= gravatar_for user %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to full_name(user), user %></h5>
+          <p class="card-text"><%= link_to "Delete", user, method: :delete if can? :destroy, user %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

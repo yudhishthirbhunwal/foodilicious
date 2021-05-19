@@ -1,28 +1,44 @@
 <% provide(:title, 'All Users') %>
-
+<div class="container user_index">
 <% if current_user.is_admin? %>
-  <h1>All Users</h1>
-  <%= paginate @allusers %>
-  <ul>
-    <%= render @allusers %>
-  </ul>
-  <%= paginate @allusers %>
+  <div class="user_index_heading">
+    <h1>All Users</h1>
+  </div>
+  <div class="user_index_content">
+    <div class="user_index_list">
+      <%= render @allusers %>
+    </div>
+    <div class="user_index_pagination">
+      <%= paginate @allusers %>
+    </div>
+  </div>
 <% end %>
 
 <% if current_user.is_buyer? %>
-  <h1>All Sellers</h1>
-  <%= paginate @sellers %>
-  <ul>
-    <%= render @sellers %>
-  </ul>
-  <%= paginate @sellers %>
+  <div class="user_index_heading">
+    <h1>All Sellers</h1>
+  </div>
+  <div class="user_index_content">
+    <div class="user_index_list">
+      <%= render @sellers %>
+    </div>
+    <div class="user_index_pagination">
+      <%= paginate @sellers %>
+    </div>
+  </div>
 <% end %>
 
 <% if current_user.is_seller? %>
-  <h1>All Buyers</h1>
-  <%= paginate @buyers %>
-  <ul>
-    <%= render @buyers %>
-  </ul>
-  <%= paginate @buyers %>
+  <div class="user_index_heading">
+    <h1>All Buyers</h1>
+  </div>
+  <div class="user_index_content">
+    <div class="user_index_list">
+      <%= render @buyers %>
+    </div>
+    <div class="user_index_pagination">
+      <%= paginate @buyers %>
+    </div>
+  </div>
 <% end %>
+</div>

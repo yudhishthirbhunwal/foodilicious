@@ -1,22 +1,22 @@
-<%= form_with(model: @food_item, local: true) do |f| %>
+<%= form_with(model: @food_item, local: true, class: "food_form") do |f| %>
   <%= render "shared/error_messages", object: f.object %>
 
-  <div class="field">
+  <div class="form-floating mb-3 field">
+    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name" %>
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
   </div>
   
-  <div class="field">
+  <div class="form-floating mb-3 field">
+    <%= f.number_field :price, class: "form-control", placeholder: "Price" %>
     <%= f.label :price %><br />
-    <%= f.number_field :price %>
   </div>
   
-  <div class="field">
+  <div class="form-floating mb-3 field">
+    <%= f.text_area :description, class: "form-control", placeholder: "Description", style: "height: 100px" %>
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Add" %>
+    <%= f.submit "Add", class: "btn" %>
   </div>
 <% end %>

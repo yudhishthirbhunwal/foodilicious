@@ -1,2 +1,198 @@
 // Import Bootstrap v5
 @import "~bootstrap/scss/bootstrap";
+
+body {
+  position: relative;
+  a {
+    text-decoration: none;
+  }
+}
+
+#content {
+  margin: 30px 0px;
+  min-height: 650px;
+}
+// Headings
+.home, .help, .about, .contact, .user_index_heading, .user_show_heading,
+.food_index_heading, .food_show_heading, .order_index_heading, .food_new_heading,
+.food_edit_heading {
+  text-align: center;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #2f9bc7;
+  border-radius: 5px;
+  color: #eee;
+  margin-bottom: 50px;
+}
+
+.home_heading {
+  margin: 30px 0px;
+}
+
+.home_button a {
+  color: #2f9bc7;
+  text-decoration: none;
+  padding: 20px;
+  background: #eee;
+  border-radius: 10px;
+}
+
+.user_index_heading, .user_show_heading,
+.food_index_heading, .food_show_heading,
+.order_index_heading, .food_new_heading,
+.food_edit_heading {
+  min-height: 150px;
+}
+
+.user_index_list, .food_index_list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user_card {
+  width: 33.33%;
+  padding-right: 10px;
+}
+
+.food_card {
+  width: 33.33%;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #2f9bc7;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+//Forms
+.food_new_content, .food_edit_content {
+  display: flex;
+  justify-content: center;
+}
+
+.food_form {
+  width: 40%;
+  padding: 50px;
+  background: #effaff;
+  border: 1px solid #48aed6;
+  .actions {
+    text-align: center;
+  }
+  input {
+    padding: 10px 50px;
+  }
+}
+
+// Tables
+table a {
+  text-decoration: none;
+  color: $black;
+}
+
+h5 a {
+  text-decoration: none;
+}
+
+// Pagination
+.pagination a, .pagination span.current, .pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+  }
+
+  .pagination {
+    margin-bottom: 20px;
+    border-left: 1px solid #ddd;
+    .first{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .page{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .next{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .last{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+}
+
+// Footer
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background: #212529;
+  color: #ccc;
+  padding: 50px 30px;
+  a {
+    text-decoration: none;
+    color: #ccc;
+    padding: 20px;
+  }
+}
+
+// Media Queries
+@media only screen and (max-width: 1000px) {
+  .user_card {
+    width: 50%;
+  }
+  .food_form {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .food_card {
+    width: 50%;
+  }
+  .food_form {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .user_card {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .food_card {
+    width: 100%;
+    padding-right: 0;
+  }
+  .food_form {
+    width: 100%;
+  }
+}
+
+// Debug Dump
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin: 40px 0;
+  padding: 20px 40px;
+  border: 1px solid #ccc;
+  background: #eee;
+}
