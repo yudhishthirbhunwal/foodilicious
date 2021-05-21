@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: buyerone
   food_item: one
   quantity: 1
 
 two:
-  user: two
+  user: buyertwo
   food_item: two
-  quantity: 1
+  quantity: 5
+
+three:
+  user: buyerthree
+  food_item: aavocado
+  quantity: 7

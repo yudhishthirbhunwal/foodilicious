@@ -3,17 +3,23 @@
 one:
   name: MyString
   price: 5
-  user: userone
+  user: sellerone
   description: MyText
 
 two:
   name: MyString
   price: 9
-  user: usertwo
+  user: sellertwo
   description: MyText
 
 aavocado:
   name: Aavocado
   price: 12
-  user: userone
+  user: sellerthree
+  description: MyText
+
+plum:
+  name: Plum
+  price: 2
+  user: sellerfour
   description: MyText

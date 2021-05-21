@@ -2,7 +2,7 @@ require "test_helper"
 
 class FoodItemTest < ActiveSupport::TestCase
   def setup
-    @user = users(:userone)
+    @user = users(:buyerone)
     @food_item = @user.food_items.build(name: "Chocolate", price: 20, description: "Cadbudy Dairy Milk Silk")
   end
 

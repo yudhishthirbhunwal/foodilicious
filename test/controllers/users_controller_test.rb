@@ -2,21 +2,27 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
 
-  # def setup
-  #   @user = users(:userone)
-  #   @other_user = users(:usertwo)  
-  # end
+  def setup
+    @user = users(:admin)
+    sign_in(@user)
+  end
 
-  # test "should redirect index when not logged in" do
-  #   get users_path
-  #   assert_redirected_to login_url
-  # end
+  test "should redirect if not logged in" do
+    sign_out :user
+    get users_path
+    assert_response :redirect
+  end
 
-  # test "should redirect edit when not logged in" do
-  #   get edit_user_registration_path(@user)
-  #   assert_response :unauthorized
-  # end
-  
+  test "should get index" do
+    get users_path
+    assert_response :success
+  end
+
+  test "should get show" do
+    get user_path(@user)
+    assert_response :success
+  end
+
   # test "should redirect update when not logged in" do
   #   patch user_path(@user), params: { user: { name: @user.name,
   #                                             email: @user.email } }

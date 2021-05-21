@@ -4,18 +4,84 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-userone:
-  first_name: Test1
-  last_name: User1
+admin:
+  first_name: Admin
+  last_name: User
   phone_number: 9999999999
-  email: user1@test.com
+  email: admin@user.com
   encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
-  confirmed_at: DateTime.now
+  confirmed_at: <%= Time.now.utc %>
 
-usertwo:
-  first_name: Test2
-  last_name: User2
+buyerone:
+  first_name: Buyer1
+  last_name: User1
   phone_number: 9999999998
-  email: user2@test.com
+  email: user1@test1.com
   encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
-  confirmed_at: DateTime.now
+  confirmed_at: <%= Time.now.utc %>
+
+sellerone:
+  first_name: Seller1
+  last_name: User1
+  phone_number: 9999999997
+  email: user2@test2.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+buyertwo:
+  first_name: Buyer2
+  last_name: User2
+  phone_number: 9999999996
+  email: user3@test3.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+sellertwo:
+  first_name: Seller2
+  last_name: User2
+  phone_number: 9999999995
+  email: user4@test4.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+buyerthree:
+  first_name: Buyer3
+  last_name: User3
+  phone_number: 9999999994
+  email: user5@test5.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+sellerthree:
+  first_name: Seller3
+  last_name: User3
+  phone_number: 9999999993
+  email: user6@test6.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+buyerfour:
+  first_name: Buyer4
+  last_name: User4
+  phone_number: 9999999992
+  email: user7@test7.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+sellerfour:
+  first_name: Seller4
+  last_name: User4
+  phone_number: 9999999991
+  email: user8@test8.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar1') %>
+  confirmed_at: <%= Time.now.utc %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  first_name: <%= "User #{n}" %>
+  last_name: <%= "Test #{n}" %>
+  phone_number: <%= (0..9).to_a.shuffle.join %>
+  email: <%= "user-#{n}@example.com" %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, '@Foobar') %>
+  confirmed_at: <%= Time.now.utc %>
+<% end %>
