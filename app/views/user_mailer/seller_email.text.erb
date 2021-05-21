@@ -1,0 +1,4 @@
+Hello, <%= @seller.first_name %>!
+
+  An order has been placed on your enlisted food item with id: <%= @food_item.id %> and name: <%= @food_item.name %>
+  by: <%= @buyer.first_name %> and the order id is <%= @buyer.get_order(@food_item).id %>

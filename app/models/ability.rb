@@ -16,10 +16,12 @@ class Ability
         can [:update, :destroy], User, id: user.id
       end
       if user.has_role? :seller
-        can [:create, :read, :update, :destroy], FoodItem, user_id: user.id
+        can [:create, :read, :update, :destroy], FoodItem
+      else
+        can :read, FoodItem
       end
       if user.has_role? :buyer
-        can :read, FoodItem
+        can [:read, :create, :destroy], Order
       end
     #
     # The first argument to `can` is the action you are giving the user

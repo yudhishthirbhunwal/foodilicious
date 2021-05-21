@@ -1,0 +1,21 @@
+<h1>Hello, <%= @buyer.first_name %>!</h1>
+
+<p>
+  Your order has been placed successfully!
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Food Item Id:</th>
+      <th>Name:</th>
+      <th>Description:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @food_item.id %></td>
+      <td><%= @food_item.name %></td>
+      <td><%= @food_item.description %></td>
+    </tr>
+  </tbody>
+</table>

@@ -5,10 +5,17 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.order_email.subject
   #
-  def order_email
+  def seller_email
     @seller = params[:seller]
     @food_item = params[:food_item]
     @buyer = params[:buyer]
     mail(to: @seller.email, subject: 'Order Placed!')
+  end
+
+  def buyer_email
+    @seller = params[:seller]
+    @food_item = params[:food_item]
+    @buyer = params[:buyer]
+    mail(to: @buyer.email, subject: 'Order Placed!')
   end
 end

@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    resource.add_role(params[:user][:roles])
+    resource.add_role(params[:user][:roles]) if resource.valid?
   end
 
   # GET /resource/edit

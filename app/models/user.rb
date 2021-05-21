@@ -22,7 +22,7 @@ class User < ApplicationRecord
                            format: { with: VALID_PHONE_REGEX },
                            uniqueness: true
   validates :email, length: { maximum: 255 }
-  validates :password, format: { with: VALID_PASSWORD }
+  validates :password, format: { with: VALID_PASSWORD, message: 'should contain at least one capital letter, one digit and one special character' }
 
   def get_order(food_item)
     self.orders.find_by(food_item_id: food_item.id)
