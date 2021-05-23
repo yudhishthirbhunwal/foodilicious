@@ -28,7 +28,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><%= link_to 'Enlist a Food Item', new_food_item_path, class: "dropdown-item" if current_user.is_seller? %></li>
-                <li><%= link_to 'Orders Placed', orders_path, class: "dropdown-item" if current_user.is_buyer? %></li>
+                <li><%= link_to 'Orders Placed', orders_path, class: "dropdown-item" if current_user.is_buyer? || current_user.is_admin? %></li>
                 <li><%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to 'Settings', edit_user_registration_path, class: "dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>

@@ -7,5 +7,25 @@
     <%= gravatar_for @user %>  <%= full_name(@user) %>
     <br>
     <%= @user.email %>
+    <% if current_user.is_seller? && !@user.is_seller? %>
+      <table class="table table-primary table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Food Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Seller Name</th>
+            <% if current_user.is_admin? || current_user.is_seller? %>
+              <th scope="col">Buyer Name</th>
+            <% end %>
+            <th scope="col">Order Placed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @orders %>
+        </tbody>
+      </table>
+      <%= paginate @orders %>
+    <% end %>
   </div>
 </div>

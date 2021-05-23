@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.page(params[:page]).per(20)
+    @all_orders = Order.page(params[:page]).per(20)
   end
 
   def create

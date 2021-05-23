@@ -42,10 +42,22 @@ sellers = users[51..100]
 sellers.each { |seller| seller.add_role :seller }
 
 # Generate food items for a subset of sellers.
-sellers = User.with_role(:seller).take(6)
-50.times do
+sellers = User.with_role(:seller).sample(20)
+10.times do
   name = Faker::Food.dish
   price = rand 3..100
   description = Faker::Lorem.sentence(word_count: 10)
   sellers.each { |seller| seller.food_items.create!(name: name, price: price, description: description) }
+end
+
+# Places orders on food items.
+buyers = User.with_role(:buyer).sample(20)
+food_items = FoodItem.all.sample(20)
+10.times do
+  buyers.each do |buyer|
+    food_items.each do |food|
+      quantity = rand 1..20
+      buyer.orders.create!(quantity: quantity, food_item_id: food.id)
+    end
+  end
 end

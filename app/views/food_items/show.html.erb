@@ -6,9 +6,16 @@
     </h1>
   </div>
   <div class="food_show_content">
-    <strong>
-      Price: <%= @food_item.price %>
-    </strong>
+    <p>
+      <strong>
+        Price: <%= @food_item.price %>
+      </strong>
+    </p>
+    <p>
+      <strong>
+        Seller: <%= full_name(@food_item.user) %>
+      </strong>
+    </p>
     <p>
       <strong>Description:</strong> <%= @food_item.description %>
     </p>

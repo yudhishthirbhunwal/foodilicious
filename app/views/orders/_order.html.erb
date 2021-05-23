@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <%= order.id %>
+  </td>
+  <td>
+    <%= link_to get_food_item(order).name, get_food_item(order) %>
+  </td>
+  <td>
+    <%= order.quantity %>
+  </td>
+  <td>
+    <%= full_name(get_food_item(order).user) %>
+  </td>
+  <% if current_user.is_admin? || current_user.is_seller? %>
+    <td>
+      <%= full_name(order.user) %>
+    </td>
+  <% end %>
+  <td>
+    <%= order.created_at %>
+  </td>
+</tr>

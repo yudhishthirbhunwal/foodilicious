@@ -3,34 +3,30 @@
   <div class="order_index_heading heading">
     <h1>Orders Placed</h1>
   </div>
-  <% if @orders.any? %>
+  <% if @orders.any? || current_user.is_admin? %>
     <div class="order_index_content">
       <table class="table table-primary table-hover">
         <thead class="table-dark">
           <tr>
             <th scope="col">Order ID</th>
             <th scope="col">Food Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Seller Name</th>
+            <% if current_user.is_admin? %>
+              <th scope="col">Buyer Name</th>
+            <% end %>
             <th scope="col">Order Placed</th>
           </tr>
         </thead>
         <tbody>
-          <% @orders.each do |order| %>
-            <tr>
-              <td>
-                <%= order.id %>
-              </td>
-              <td>
-                <%= link_to FoodItem.find(order.food_item_id).name, FoodItem.find(order.food_item_id) %>
-              </td>
-              <td>
-                <%= order.created_at %>
-              </td>
-            </tr>
-          <% end %>
+          <%= render @orders if current_user.is_buyer? %>
+          <%= render @all_orders if current_user.is_admin? %>
         </tbody>
       </table>
+      <%= paginate @orders if current_user.is_buyer? %>
+      <%= paginate @all_orders if current_user.is_admin? %>
     </div>
-  <% else %>
+  <% elsif current_user.is_buyer? && @orders.empty? %>
     <div class="order_index_content">
       <p>You haven't placed any order yet!!</p>
       <p>Please visit <%= link_to 'here', food_items_path %> and place an order.</p>
