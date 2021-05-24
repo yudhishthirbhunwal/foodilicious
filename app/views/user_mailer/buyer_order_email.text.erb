@@ -4,4 +4,5 @@ Hello, <%= @buyer.first_name %>!
 
     Food Item Id: <%= @food_item.id %>
     Name: <%= @food_item.name %>
+    Quantity: <%= @buyer.get_order(@food_item).quantity %>
     Description: <%= @food_item.description %>

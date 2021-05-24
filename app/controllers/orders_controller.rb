@@ -12,13 +12,15 @@ class OrdersController < ApplicationController
     @order.food_item_id = @food_item.id
     @order.save
     flash[:notice] = "Order placed successfully!"
-    UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).seller_email.deliver_now
-    UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).buyer_email.deliver_now
+    UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).seller_order_email.deliver_now
+    UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).buyer_order_email.deliver_now
     redirect_back(fallback_location: root_path)
   end
   
   def destroy
     @order = Order.find(params[:id])
+    UserMailer.with(food_item: @order.food_item, buyer: current_user, seller: @order.food_item.user).seller_cancel_email.deliver_now
+    UserMailer.with(food_item: @order.food_item, buyer: current_user, seller: @order.food_item.user).buyer_cancel_email.deliver_now
     @order.delete
     flash[:alert] = "Order Cancelled!"
     redirect_back(fallback_location: root_path)

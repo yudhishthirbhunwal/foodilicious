@@ -8,6 +8,7 @@
     <tr>
       <th>Food Item Id:</th>
       <th>Name:</th>
+      <th>Quantity:</th>
       <th>Description:</th>
     </tr>
   </thead>
@@ -15,6 +16,7 @@
     <tr>
       <td><%= @food_item.id %></td>
       <td><%= @food_item.name %></td>
+      <td><%= @buyer.get_order(@food_item).quantity %></td>
       <td><%= @food_item.description %></td>
     </tr>
   </tbody>

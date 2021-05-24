@@ -6,7 +6,7 @@ class FoodItem < ApplicationRecord
   default_scope -> { order(name: :asc) }
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :description, presence: true, length: { maximum: 255 }
   validates :user_id, presence: true
 end

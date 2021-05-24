@@ -1,8 +1,8 @@
 <%= form_with(scope: :order, url: orders_path, local: true) do |f| %>
-  <%= hidden_field_tag :food_item_id, @food_item.id %>
+  <%= hidden_field_tag :food_item_id, food_item.id %>
 
   <%= f.label :quantity %>
-  <%= f.number_field :quantity, min: 1, value: 1, style: "width: 5%;" %>
+  <%= f.number_field :quantity, min: 1, value: 1, style: "width: 50px;" %>
 
   <%= f.submit "Place Order", class: "btn" %>
 <% end %>

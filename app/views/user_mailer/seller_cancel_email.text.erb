@@ -1,0 +1,4 @@
+Hello, <%= @seller.first_name %>!
+
+  The order on your enlisted food item with id: <%= @food_item.id %> and name: <%= @food_item.name %>
+  by: <%= @buyer.first_name %> and with order id <%= @buyer.get_order(@food_item).id %> has been cancelled!

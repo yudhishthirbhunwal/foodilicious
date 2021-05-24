@@ -17,8 +17,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
-  validates :phone_number, presence: true,
-                           length: { minimum: 10, maximum: 10 },
+  validates :phone_number, presence: true, length: { is: 10 },
                            format: { with: VALID_PHONE_REGEX },
                            uniqueness: true
   validates :email, length: { maximum: 255 }

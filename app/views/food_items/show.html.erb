@@ -8,7 +8,7 @@
   <div class="food_show_content">
     <p>
       <strong>
-        Price: <%= @food_item.price %>
+        Price: <%= @food_item.price.to_f %>
       </strong>
     </p>
     <p>
@@ -26,9 +26,9 @@
     <% if current_user.is_buyer? %>
       <div id="order_form">
         <% if current_user.get_order(@food_item) %>
-          <%= render 'cancel_order' %>
+          <%= render 'cancel_order', food_item: @food_item %>
         <% else %>
-          <%= render 'place_order' %>
+          <%= render 'place_order', food_item: @food_item %>
         <% end %>
       </div>
     <% end %>
