@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  load_and_authorize_resource
+
   def index
     @allusers = User.page(params[:page]).per(20)
     @buyers = current_user.get_all_buyers.page(params[:page]).per(20)
