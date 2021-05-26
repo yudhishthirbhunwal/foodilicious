@@ -8,36 +8,16 @@ class FoodItemsController < ApplicationController
       searched_food = FoodItem.search(params[:keywords])
       if searched_food.any?
         flash.now[:notice] = "#{searched_food.count} food #{"item".pluralize(searched_food.count)} found!"
-        @food_items = searched_food.filter_by_name_asc.page(params[:page]).per(21) if params[:filters].nil? || params[:filters] == "Filter by: Default"
-        @food_items = searched_food.filter_by_price_asc.page(params[:page]).per(21) if params[:filters] == "Price (Low to High)"
-        @food_items = searched_food.filter_by_price_desc.page(params[:page]).per(21) if params[:filters] == "Price (High to Low)"
-        @food_items = searched_food.filter_by_creation.page(params[:page]).per(21) if params[:filters] == "Most Recent"
-        @food_items_by_seller = searched_food.filter_by_name_asc.page(params[:page]).per(21) if params[:filters].nil? || params[:filters] == "Filter by: Default"
-        @food_items_by_seller = searched_food.filter_by_price_asc.page(params[:page]).per(21) if params[:filters] == "Price (Low to High)"
-        @food_items_by_seller = searched_food.filter_by_price_desc.page(params[:page]).per(21) if params[:filters] == "Price (High to Low)"
-        @food_items_by_seller = searched_food.filter_by_creation.page(params[:page]).per(21) if params[:filters] == "Most Recent"
+        @food_items = searched_food.filter_food(params[:filters]).page(params[:page]).per(21)
+        @food_items_by_seller = searched_food.filter_food(params[:filters]).page(params[:page]).per(21)
       else
         flash.now[:alert] = "'#{params[:keywords]}' not found in Food Items"
-        @food_items = FoodItem.where(nil)
-        @food_items = @food_items.filter_by_name_asc.page(params[:page]).per(21) if params[:filters].nil? || params[:filters] == "Filter by: Default"
-        @food_items = @food_items.filter_by_price_asc.page(params[:page]).per(21) if params[:filters] == "Price (Low to High)"
-        @food_items = @food_items.filter_by_price_desc.page(params[:page]).per(21) if params[:filters] == "Price (High to Low)"
-        @food_items = @food_items.filter_by_creation.page(params[:page]).per(21) if params[:filters] == "Most Recent"
-        @food_items_by_seller = current_user.food_items.filter_by_name_asc.page(params[:page]).per(21) if params[:filters].nil? || params[:filters] == "Filter by: Default"
-        @food_items_by_seller = current_user.food_items.filter_by_price_asc.page(params[:page]).per(21) if params[:filters] == "Price (Low to High)"
-        @food_items_by_seller = current_user.food_items.filter_by_price_desc.page(params[:page]).per(21) if params[:filters] == "Price (High to Low)"
-        @food_items_by_seller = current_user.food_items.filter_by_creation.page(params[:page]).per(21) if params[:filters] == "Most Recent"
+        @food_items = FoodItem.filter_food(params[:filters]).page(params[:page]).per(21)
+        @food_items_by_seller = current_user.food_items.filter_food(params[:filters]).page(params[:page]).per(21)
       end
     else
-      @food_items = FoodItem.where(nil)
-      @food_items = @food_items.filter_by_name_asc.page(params[:page]).per(21) if params[:filters].nil? || params[:filters] == "Filter by: Default"
-      @food_items = @food_items.filter_by_price_asc.page(params[:page]).per(21) if params[:filters] == "Price (Low to High)"
-      @food_items = @food_items.filter_by_price_desc.page(params[:page]).per(21) if params[:filters] == "Price (High to Low)"
-      @food_items = @food_items.filter_by_creation.page(params[:page]).per(21) if params[:filters] == "Most Recent"
-      @food_items_by_seller = current_user.food_items.filter_by_name_asc.page(params[:page]).per(21) if params[:filters].nil? || params[:filters] == "Filter by: Default"
-      @food_items_by_seller = current_user.food_items.filter_by_price_asc.page(params[:page]).per(21) if params[:filters] == "Price (Low to High)"
-      @food_items_by_seller = current_user.food_items.filter_by_price_desc.page(params[:page]).per(21) if params[:filters] == "Price (High to Low)"
-      @food_items_by_seller = current_user.food_items.filter_by_creation.page(params[:page]).per(21) if params[:filters] == "Most Recent"
+      @food_items = FoodItem.filter_food(params[:filters]).page(params[:page]).per(21)
+      @food_items_by_seller = current_user.food_items.filter_food(params[:filters]).page(params[:page]).per(21)
     end
   end
 

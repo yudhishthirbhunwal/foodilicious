@@ -20,4 +20,15 @@ class FoodItem < ApplicationRecord
     end
   end
 
+  def self.filter_food(params)
+    if params == "Price (Low to High)"
+      self.filter_by_price_asc
+    elsif params == "Price (High to Low)"
+      self.filter_by_price_desc
+    elsif params == "Most Recent"
+      self.filter_by_creation
+    else
+      self.filter_by_name_asc
+    end
+  end
 end
