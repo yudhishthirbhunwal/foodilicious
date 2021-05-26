@@ -3,9 +3,24 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @allusers = User.page(params[:page]).per(20)
-    @buyers = current_user.get_all_buyers.page(params[:page]).per(20)
-    @sellers = User.with_role(:seller).page(params[:page]).per(20)
+    if !params[:keywords].nil?
+      searched_user = User.search(params[:keywords])
+      if searched_user.any?
+        flash.now[:notice] = "#{searched_user.count} #{"user".pluralize(searched_user.count)} found!"
+        @allusers = searched_user.page(params[:page]).per(21)
+        @buyers = searched_user.page(params[:page]).per(21)
+        @sellers = searched_user.page(params[:page]).per(21)
+      else
+        flash.now[:alert] = "'#{params[:keywords]}' not found in Users"
+        @allusers = User.page(params[:page]).per(21)
+        @buyers = current_user.get_all_buyers.page(params[:page]).per(21)
+        @sellers = User.with_role(:seller).page(params[:page]).per(21)
+      end
+    else
+      @allusers = User.page(params[:page]).per(21)
+      @buyers = current_user.get_all_buyers.page(params[:page]).per(21)
+      @sellers = User.with_role(:seller).page(params[:page]).per(21)
+    end
   end
 
   def show

@@ -1,30 +1,38 @@
 <% provide(:title, 'Food Items') %>
 <div class="container food_index">
-<% if current_user.is_admin? || current_user.is_buyer?%>
   <div class="food_index_heading heading">
-    <h1>All Food Items</h1>
+    <% if current_user.is_admin? || current_user.is_buyer?%>
+      <h1>All Food Items</h1>
+    <% end %>
+    <% if current_user.is_seller? %>
+      <h1>Food Items enlisted by <%= full_name(current_user) %></h1>
+    <% end %>
   </div>
-  <div class="food_index_content">
-    <div class="food_index_list">
-      <%= render @food_items %>
-    </div>
-    <div class="food_index_pagination">
-      <%= paginate @food_items %>
-    </div>
-  </div>
-<% end %>
 
-<% if current_user.is_seller? %>
-  <div class="food_index_heading heading">
-    <h1>Food Items enlisted by <%= full_name(current_user) %></h1>
-  </div>
   <div class="food_index_content">
+
+    <div class="food_index_search">
+      <%= form_tag food_items_path, method: :get, class: "row row-cols-lg-auto g-3 mb-3 align-items-center" do %>
+        <div class="form-floating field">
+          <%= search_field_tag :keywords, params[:keywords], placeholder: "Search by name or price", class: "form-control" %>
+          <%= label_tag :keywords %>
+        </div>
+        <div class="form field">
+          <%= select_tag :filters, options_for_select(["Filter by: Default", "Price (Low to High)", "Price (High to Low)", "Most Recent"]), class: "form-select" %>
+        </div>
+        <div class="actions">
+          <%= submit_tag "Search", name: nil, class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="food_index_list">
-      <%= render @food_items_by_seller %>
+      <%= render @food_items if current_user.is_buyer? || current_user.is_admin? %>
+      <%= render @food_items_by_seller if current_user.is_seller? %>
     </div>
     <div class="food_index_pagination">
-      <%= paginate @food_items_by_seller %>
+      <%= paginate @food_items if current_user.is_buyer? || current_user.is_admin? %>
+      <%= paginate @food_items_by_seller if current_user.is_seller? %>
     </div>
   </div>
-<% end %>
 </div>

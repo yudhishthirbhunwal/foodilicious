@@ -42,12 +42,41 @@ sellers = users[51..100]
 sellers.each { |seller| seller.add_role :seller }
 
 # Generate food items for a subset of sellers.
-sellers = User.with_role(:seller).sample(20)
-10.times do
-  name = Faker::Food.dish
-  price = rand 3..100
-  description = Faker::Lorem.sentence(word_count: 10)
-  sellers.each { |seller| seller.food_items.create!(name: name, price: price, description: description) }
+sellers = User.with_role(:seller).sample(5)
+5.times do
+  sellers.each do |seller|
+    name = Faker::Food.dish
+    price = (rand(3.000..100.000)).round(2)
+    description = Faker::Lorem.sentence(word_count: 4)
+    seller.food_items.create!(name: name, price: price, description: description)
+  end
+end
+sellers = User.with_role(:seller).sample(5)
+5.times do
+  sellers.each do |seller|
+    name = Faker::Food.fruits
+    price = (rand(3.000..100.000)).round(2)
+    description = Faker::Lorem.sentence(word_count: 6)
+    seller.food_items.create!(name: name, price: price, description: description)
+  end
+end
+sellers = User.with_role(:seller).sample(5)
+5.times do
+  sellers.each do |seller|
+    name = Faker::Food.vegetables
+    price = (rand(3.000..100.000)).round(2)
+    description = Faker::Lorem.sentence(word_count: 10)
+    seller.food_items.create!(name: name, price: price, description: description)
+  end
+end
+sellers = User.with_role(:seller).sample(5)
+5.times do
+  sellers.each do |seller|
+    name = Faker::Dessert.variety
+    price = (rand(3.000..100.000)).round(2)
+    description = Faker::Lorem.sentence(word_count: 7)
+    seller.food_items.create!(name: name, price: price, description: description)
+  end
 end
 
 # Places orders on food items.

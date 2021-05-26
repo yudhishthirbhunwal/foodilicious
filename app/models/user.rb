@@ -27,6 +27,7 @@ class User < ApplicationRecord
     self.orders.find_by(food_item_id: food_item.id)
   end
 
+  # Get all buyers for a particular seller.
   def get_all_buyers
     # items_by_seller_ids = "SELECT id FROM food_items WHERE user_id = :user_id",
     # buyer_ids = "SELECT DISTINCT user_id FROM orders WHERE food_item_id IN (#{items_by_seller_ids})"
@@ -35,6 +36,7 @@ class User < ApplicationRecord
     User.joins(:orders).where(orders: { food_item: self.food_items }).distinct
   end
 
+  # Gets all the orders by buyers for a particular seller.
   def get_all_orders_for(seller)
     # all_orders_for = self.orders.dup.clear
     # seller.food_items.each do |food|
@@ -42,6 +44,13 @@ class User < ApplicationRecord
     # end
     # all_orders_for
     Order.where(food_item: seller.food_items, user: self)
+  end
+
+  # Searchs a particular user.
+  def self.search(keywords)
+    if keywords
+      self.where("LOWER(first_name) LIKE (?) OR LOWER(last_name) LIKE (?)", "%#{keywords.downcase}%", "%#{keywords.downcase}%")
+    end
   end
 
 end

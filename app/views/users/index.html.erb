@@ -1,44 +1,46 @@
 <% provide(:title, 'All Users') %>
 <div class="container user_index">
-<% if current_user.is_admin? %>
-  <div class="user_index_heading heading">
-    <h1>All Users</h1>
-  </div>
-  <div class="user_index_content">
-    <div class="user_index_list">
-      <%= render @allusers %>
-    </div>
-    <div class="user_index_pagination">
-      <%= paginate @allusers %>
-    </div>
-  </div>
-<% end %>
 
-<% if current_user.is_buyer? %>
   <div class="user_index_heading heading">
-    <h1>All Sellers</h1>
-  </div>
-  <div class="user_index_content">
-    <div class="user_index_list">
-      <%= render @sellers %>
-    </div>
-    <div class="user_index_pagination">
-      <%= paginate @sellers %>
-    </div>
-  </div>
-<% end %>
+    <% if current_user.is_admin? %>
+      <h1>All Users</h1>
+    <% end %>
 
-<% if current_user.is_seller? %>
-  <div class="user_index_heading heading">
-    <h1>Buyers Who Ordered From You</h1>
+    <% if current_user.is_buyer? %>
+      <h1>All Sellers</h1>
+    <% end %>
+
+    <% if current_user.is_seller? %>
+      <h1>Buyers Who Ordered From You</h1>
+    <% end %>
   </div>
+
   <div class="user_index_content">
+
+    <div class="user_index_search">
+      <%= form_tag users_path, method: :get, class: "row row-cols-lg-auto g-3 align-items-center" do %>
+        <div class="form-floating mb-3 field">
+          <%= search_field_tag :keywords, params[:keywords], placeholder: "Search by first or last name", class: "form-control" %>
+          <%= label_tag :keywords %>
+        </div>
+        <div class="actions mb-3">
+          <%= submit_tag "Search", name: nil, class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="user_index_list">
-      <%= render @buyers %>
+      <%= render @allusers if current_user.is_admin? %>
+      <%= render @sellers if current_user.is_buyer? %>
+      <%= render @buyers if current_user.is_seller? %>
     </div>
+    
     <div class="user_index_pagination">
-      <%= paginate @buyers %>
+      <%= paginate @allusers if current_user.is_admin? %>
+      <%= paginate @sellers if current_user.is_buyer? %>
+      <%= paginate @buyers if current_user.is_seller? %>
     </div>
+
   </div>
-<% end %>
+
 </div>
