@@ -4,7 +4,9 @@ class FoodItemsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:sellerone)
+    @user.add_role(:seller)
     @other_user = users(:sellerthree)
+    @other_user.add_role(:seller)
     @food_item = food_items(:aavocado)
   end
 
@@ -30,10 +32,12 @@ class FoodItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get redirected to index after destroy" do
-    sign_in(@user)
+    sign_in(@other_user)
+    get food_items_path
     delete food_item_path(@food_item)
     assert_response :redirect
     follow_redirect!
+    assert_not flash.empty?
     assert_template 'food_items/index'
   end
 end

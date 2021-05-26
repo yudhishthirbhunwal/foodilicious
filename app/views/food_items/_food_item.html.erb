@@ -13,7 +13,7 @@
     </ul>
     <div class="card-body">
       <% if current_user.is_buyer? %>
-        <div id="order_form" class="card-link">
+        <div id="order_form_<%= food_item.id %>" class="card-link">
           <% if current_user.get_order(food_item) %>
             <%= render 'cancel_order', food_item: food_item %>
           <% else %>

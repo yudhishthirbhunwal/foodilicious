@@ -4,6 +4,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:buyerone)
+    @user.add_role(:buyer)
     sign_in(@user)
     @food_item = food_items(:aavocado)
     @order = orders(:one)
