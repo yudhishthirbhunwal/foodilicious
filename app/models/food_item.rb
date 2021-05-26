@@ -16,7 +16,7 @@ class FoodItem < ApplicationRecord
   # Searchs a particular food item.
   def self.search(keywords)
     if keywords
-      self.where("LOWER(name) LIKE (?) OR price LIKE (?)", "%#{keywords.downcase}%", keywords.to_f)
+      self.where("LOWER(name) LIKE (?) OR ROUND(price) = (?)", "%#{keywords.downcase}%", keywords.to_f.round())
     end
   end
 
