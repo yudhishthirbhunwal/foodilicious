@@ -16,10 +16,9 @@ class OrdersController < ApplicationController
     end
     @food_item.increment!(:order_count)
     respond_to do |format|
-      format.html { redirect_to @food_item, notice: "AJAX Order placed Successfully!" }
+      format.html { redirect_back fallback_location: @food_item, notice: "Order placed Successfully!" }
       format.js
     end
-    # flash[:notice] = "Order placed successfully!"
   end
   
   def destroy
@@ -29,10 +28,9 @@ class OrdersController < ApplicationController
     UserMailer.with(food_item: @order.food_item, buyer: current_user, seller: @order.food_item.user).buyer_cancel_email.deliver_now
     @order.delete
     respond_to do |format|
-      format.html { redirect_to food_items_path, alert: "AJAX Order Cancelled!" }
+      format.html { redirect_back fallback_location: @food_item, alert: "Order Cancelled!" }
       format.js
     end
-    # flash[:alert] = "Order Cancelled!"
   end
 
   private

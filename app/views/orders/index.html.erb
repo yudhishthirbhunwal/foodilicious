@@ -16,6 +16,9 @@
               <th scope="col">Buyer Name</th>
             <% end %>
             <th scope="col">Order Placed</th>
+            <% if can? :destroy, Order %>
+              <th scope="col">Cancel Order</th>
+            <% end %>
           </tr>
         </thead>
         <tbody>

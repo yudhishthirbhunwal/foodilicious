@@ -19,4 +19,9 @@
   <td>
     <%= order.created_at %>
   </td>
+  <% if can? :destroy, order %>
+    <td>
+      <%= link_to 'Cancel', order, method: :delete, data: { confirm: "Are you sure want to cancel the order?" }, class: "btn" %>
+    </td>
+  <% end %>
 </tr>
