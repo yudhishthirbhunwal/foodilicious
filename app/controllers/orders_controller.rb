@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.build(order_params)
     @order.food_item_id = @food_item.id
     @order.save
+    @food_item.increment!(:order_count)
     flash[:notice] = "Order placed successfully!"
     UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).seller_order_email.deliver_now
     UserMailer.with(food_item: @food_item, buyer: current_user, seller: @food_item.user).buyer_order_email.deliver_now
