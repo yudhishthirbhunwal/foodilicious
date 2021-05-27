@@ -26,12 +26,12 @@
       <% end %>
     </div>
 
-    <div id="bestseller">
+    <div class="food_index_bestseller">
       <p>
-        <b>Best Seller:</b> <%= FoodItem.find_by(order_count: FoodItem.maximum(:order_count)).name %>
+        <b>Best Seller:</b> <span class="bestseller"><%= FoodItem.find_by(order_count: FoodItem.maximum(:order_count)).name %></span>
       </p>
       <p>
-        <b>Order Count:</b> <%= FoodItem.maximum(:order_count) %>
+        <b>Order Count:</b> <span class="bestseller_count"><%= FoodItem.maximum(:order_count) %></span>
       </p>
     </div>
 

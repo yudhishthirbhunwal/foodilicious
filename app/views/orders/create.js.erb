@@ -1,0 +1,4 @@
+$("#order_form_<%= @food_item.id %>").html("<%= j render 'food_items/cancel_order', food_item: ( @food_item || food_item ) %>");
+$(".bestseller").html("<%= FoodItem.find_by(order_count: FoodItem.maximum(:order_count)).name %>");
+$(".bestseller_count").html("<%= FoodItem.maximum(:order_count) %>");
+$("#food_order_count_<%= @food_item.id %>").html("<%= @food_item.order_count %>");

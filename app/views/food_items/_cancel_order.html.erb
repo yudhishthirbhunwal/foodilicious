@@ -1,3 +1,3 @@
-<%= form_with(model: current_user.get_order(food_item), html: { method: :delete }, local: true) do |f| %>
+<%= form_with(model: current_user.get_order(food_item), html: { method: :delete }, local: false) do |f| %>
   <%= f.submit "Cancel Order", class: "btn" %>
 <% end %>

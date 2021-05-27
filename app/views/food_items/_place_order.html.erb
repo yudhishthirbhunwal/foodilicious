@@ -1,8 +1,8 @@
-<%= form_with(model: current_user.orders.build, local: true) do |f| %>
+<%= form_with(model: current_user.orders.build, local: false) do |f| %>
   <%= hidden_field_tag :food_item_id, food_item.id %>
+
+  <%= f.submit "Place Order", class: "btn" %>
 
   <%= f.label :quantity %>
   <%= f.number_field :quantity, min: 1, value: 1, step: 1.0, style: "width: 50px;" %>
-
-  <%= f.submit "Place Order", class: "btn" %>
 <% end %>
