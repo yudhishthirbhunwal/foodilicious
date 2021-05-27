@@ -6,7 +6,7 @@
       <p class="card-text"><%= food_item.description %></p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><b>Price :</b> ₹<%= food_item.price.to_f %></li>
+      <li class="list-group-item"><b>Price :</b> ₹<%= food_item.price %></li>
       <% if current_user.is_buyer? || current_user.is_admin? %>
         <li class="list-group-item"><b>Seller :</b> <%= full_name(food_item.user) %></li>
       <% end %>
