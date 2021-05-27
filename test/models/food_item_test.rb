@@ -40,7 +40,4 @@ class FoodItemTest < ActiveSupport::TestCase
     assert_not @food_item.valid?
   end
 
-  test "order should be in ascending by name" do
-    assert_equal food_items(:aavocado), FoodItem.first
-  end
 end
