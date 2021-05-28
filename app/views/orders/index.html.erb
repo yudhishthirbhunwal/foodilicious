@@ -21,7 +21,7 @@
             <% end %>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="orders_table">
           <%= render @orders if current_user.is_buyer? %>
           <%= render @all_orders if current_user.is_admin? %>
         </tbody>

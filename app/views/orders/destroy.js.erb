@@ -1,1 +1,2 @@
 $("#order_form_<%= @food_item.id %>").html("<%= j render 'food_items/place_order', food_item: ( @food_item || food_item ) %>");
+$(".orders_table").html("<%= j render @orders if current_user.is_buyer? %><%= j render @all_orders if current_user.is_admin? %>")

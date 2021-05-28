@@ -22,10 +22,12 @@ class OrdersController < ApplicationController
   end
   
   def destroy
+    @orders = current_user.orders.page(params[:page]).per(20)
+    @all_orders = Order.page(params[:page]).per(20)
     @order = Order.find(params[:id])
     @food_item = @order.food_item
-    UserMailer.with(food_item: @order.food_item, buyer: current_user, seller: @order.food_item.user).seller_cancel_email.deliver_now
-    UserMailer.with(food_item: @order.food_item, buyer: current_user, seller: @order.food_item.user).buyer_cancel_email.deliver_now
+    UserMailer.with(food_item: @food_item, buyer: @order.user, seller: @food_item.user).seller_cancel_email.deliver_now
+    UserMailer.with(food_item: @food_item, buyer: @order.user, seller: @food_item.user).buyer_cancel_email.deliver_now
     @order.delete
     respond_to do |format|
       format.html { redirect_back fallback_location: @food_item, alert: "Order Cancelled!" }
